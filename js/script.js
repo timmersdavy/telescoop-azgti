@@ -81,11 +81,11 @@ function initializeDemoData() {
         {date:'2025-11-20',time:'21:00',object:'Maan',eyepiece:'10',seeing:'5',notes:'Kraters Tycho en Copernic zeer scherp'}
     ];
 
-    // Sample Media (Videos)
+    // Sample Media (Videos) - Echte astronomie content
     const media = [
-        {type:'video',title:'AZ-GTi GoTo Mount Setup',id:'jNgP6d9HraI',desc:'Hoe zet je de WiFi mount op - stap voor stap'},
-        {type:'video',title:'M42 Orion Waarneming',id:'dQw4w9WgXcQ',desc:'Live waarneming van de Orion nevel met 90mm refractor'},
-        {type:'video',title:'Maanwaarneming met Refractor',id:'jNgP6d9HraI',desc:'Maan details en kraters in 4K kwaliteit'}
+        {type:'video',title:'Refractor Telescoop Gids',id:'vMqDpgwRW80',desc:'Hoe kies je en bedient je een refractor telescoop'},
+        {type:'video',title:'Maan Crater Mapping',id:'QbNRwW4H1cI',desc:'Gedetailleerde kraters en maanlandschap'},
+        {type:'video',title:'Deep Sky Objects Observeren',id:'tYzMGcUty6s',desc:'Tips voor het waarnemen van nevels en sterrenhopen'}
     ];
 
     localStorage.setItem('telescopeObservations', JSON.stringify(observations));
