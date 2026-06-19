@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waarnemingen — De telescoop en de Mount AZ-GTi GotoWifi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">🔭 Telescoop</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="specs.html">Specs</a></li>
+                <li><a href="berekeningen.html">Berekeningen</a></li>
+                <li><a href="wifi-gids.html">WiFi Gids</a></li>
+                <li><a href="waarnemingen.html" class="active">Waarnemingen</a></li>
+                <li><a href="galerie.html">Galerie</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Observatie Logboek</h1>
+            <p class="subtitle">Alle mijn waarnemingen gedocumenteerd</p>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="container">
+                <h2>Waarnemingen</h2>
+
+                <div style="background: rgba(26, 31, 58, 0.5); border: 1px solid var(--border-color); border-radius: 8px; padding: 2rem; text-align: center; color: var(--text-muted);">
+                    <p style="font-size: 1.2rem;">📋 Geen waarnemingen gelogd.</p>
+                    <p>Voeg hieronder je eerste waarneming toe!</p>
+                </div>
+
+                <div style="margin-top: 2rem; background: rgba(26, 31, 58, 0.3); border: 1px solid var(--border-color); border-radius: 8px; padding: 2rem;">
+                    <h3 style="margin-bottom: 1rem;">Nieuwe Waarneming Toevoegen</h3>
+                    <form id="observationForm" style="display: grid; gap: 1rem;">
+                        <div>
+                            <label for="date" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold);">Datum:</label>
+                            <input type="date" id="date" name="date" style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px;">
+                        </div>
+
+                        <div>
+                            <label for="time" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold);">Tijd:</label>
+                            <input type="time" id="time" name="time" style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px;">
+                        </div>
+
+                        <div>
+                            <label for="object" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold);">Object (NGC/Messier/Ster):</label>
+                            <input type="text" id="object" name="object" placeholder="bijv. M42, NGC 7009, Jupiter" style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px;">
+                        </div>
+
+                        <div>
+                            <label for="eyepiece" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold);">Oculair (mm):</label>
+                            <input type="number" id="eyepiece" name="eyepiece" placeholder="bijv. 25, 10, 6" style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px;">
+                        </div>
+
+                        <div>
+                            <label for="seeing" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold);">Seeing (1-5):</label>
+                            <select id="seeing" name="seeing" style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px;">
+                                <option value="1">1 - Zeer slecht</option>
+                                <option value="2">2 - Slecht</option>
+                                <option value="3">3 - Matig</option>
+                                <option value="4">4 - Goed</option>
+                                <option value="5">5 - Uitstekend</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="notes" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold);">Notities:</label>
+                            <textarea id="notes" name="notes" placeholder="Beschrijving, bijzonderheden, indrukken..." style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px; min-height: 100px; resize: vertical;"></textarea>
+                        </div>
+
+                        <button type="submit" style="padding: 0.75rem 1.5rem; background: var(--accent-gold); color: var(--bg-dark); border: none; border-radius: 4px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">Waarneming Opslaan</button>
+                    </form>
+                </div>
+
+                <div id="observationsList" style="margin-top: 2rem;"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 — De telescoop en de Mount AZ-GTi GotoWifi</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('observationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const observation = {
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                object: document.getElementById('object').value,
+                eyepiece: document.getElementById('eyepiece').value,
+                seeing: document.getElementById('seeing').value,
+                notes: document.getElementById('notes').value
+            };
+
+            let observations = JSON.parse(localStorage.getItem('telescopeObservations') || '[]');
+            observations.push(observation);
+            localStorage.setItem('telescopeObservations', JSON.stringify(observations));
+
+            this.reset();
+            location.reload();
+        });
+
+        function displayObservations() {
+            const observations = JSON.parse(localStorage.getItem('telescopeObservations') || '[]');
+            const listDiv = document.getElementById('observationsList');
+
+            if (observations.length === 0) return;
+
+            let html = '<h3 style="margin-top: 2rem; color: var(--accent-gold);">Opgeslagen Waarnemingen</h3>';
+            observations.forEach((obs, index) => {
+                html += \<div style="background: rgba(26, 31, 58, 0.5); border-left: 3px solid var(--accent-blue); padding: 1.5rem; margin-bottom: 1rem; border-radius: 4px;">
+                    <p><strong>\</strong> — \ \</p>
+                    <p>Oculair: \mm | Seeing: \/5</p>
+                    <p style="color: var(--text-muted); margin-top: 0.5rem;">\</p>
+                </div>\;
+            });
+            listDiv.innerHTML = html;
+        }
+
+        displayObservations();
+    </script>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

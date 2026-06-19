@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berekeningen — De telescoop en de Mount AZ-GTi GotoWifi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">🔭 Telescoop</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="specs.html">Specs</a></li>
+                <li><a href="berekeningen.html" class="active">Berekeningen</a></li>
+                <li><a href="wifi-gids.html">WiFi Gids</a></li>
+                <li><a href="waarnemingen.html">Waarnemingen</a></li>
+                <li><a href="galerie.html">Galerie</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Optische Berekeningen</h1>
+            <p class="subtitle">Vergroting, exit pupil, gezichtsveld — alles uitgerekend</p>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="container">
+                <h2>Telescoop Berekeningen (D=90mm, F=910mm)</h2>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Vergroting (M)</h3>
+                        <p>Formule: <code>M = F (telescoop) / f (oculair)</code></p>
+                        <p>Met 25mm oculair:<br><strong>M = 910/25 = 36.4x</strong></p>
+                        <p>Met 10mm oculair:<br><strong>M = 910/10 = 91x</strong></p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Exit Pupil (EP)</h3>
+                        <p>Formule: <code>EP = D / M</code></p>
+                        <p>Bij 36.4x vergroting:<br><strong>EP = 90/36.4 = 2.47mm</strong></p>
+                        <p>Bij 91x vergroting:<br><strong>EP = 90/91 = 0.99mm</strong></p>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Oog pupil: ~7mm (dag) tot 7-9mm (nacht)</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Gezichtsveld (FOV)</h3>
+                        <p>Formule: <code>FOV = Oculair FOV / M</code></p>
+                        <p>Typisch oculair FOV: 50°</p>
+                        <p>Bij 36.4x: FOV = 50/36.4 = <strong>1.37°</strong></p>
+                        <p>Bij 91x: FOV = 50/91 = <strong>0.55°</strong></p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Scheidend Vermogen</h3>
+                        <p>Rayleigh criterium:<br><code>θ = 1.22λ / D</code></p>
+                        <p>Voor zichtlicht (550nm):<br><strong>θ = 1.39 boogseconden</strong></p>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Praktisch vaak 2-3" door atmosfeer</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Lichtgathering</h3>
+                        <p>Relatief t.o.v. menselijk oog (7mm pupil):</p>
+                        <p>Verhouding: <code>(90/7)² = 164x</code></p>
+                        <p><strong>~165x meer licht</strong> dan oog</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Minimale & Maximale Vergroting</h3>
+                        <p>Minimum (pupil niet verlicht): <strong>~13x</strong></p>
+                        <p>Maximum (praktisch): <strong>~180x</strong></p>
+                        <p>Ideaal range: 20x - 120x</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Praktische Richtlijnen</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Oculair Selectie</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>25mm (36x) — Zoeken, oppervlakte-objecten</li>
+                            <li>15mm (61x) — Algemeen observeren</li>
+                            <li>10mm (91x) — Details, dubbelsterren</li>
+                            <li>6mm (152x) — Fijne details (als atmosfeer toelaat)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Observatie-Condities</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>Seeing goed: Gebruik tot 120x</li>
+                            <li>Seeing matig: 60-90x</li>
+                            <li>Seeing slecht: 36-60x</li>
+                            <li>Maan: Tot maximale vergroting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 — De telescoop en de Mount AZ-GTi GotoWifi</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

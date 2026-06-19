@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie — De telescoop en de Mount AZ-GTi GotoWifi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">🔭 Telescoop</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="specs.html">Specs</a></li>
+                <li><a href="berekeningen.html">Berekeningen</a></li>
+                <li><a href="wifi-gids.html">WiFi Gids</a></li>
+                <li><a href="waarnemingen.html">Waarnemingen</a></li>
+                <li><a href="galerie.html" class="active">Galerie</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Foto Galerie</h1>
+            <p class="subtitle">Astrofoto's en waarnemingen</p>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="container">
+                <h2>Astrofotografie</h2>
+
+                <div style="background: rgba(26, 31, 58, 0.5); border: 1px solid var(--border-color); border-radius: 8px; padding: 3rem; text-align: center; color: var(--text-muted);">
+                    <p style="font-size: 1.2rem;">📸 Galerie is leeg.</p>
+                    <p>Voeg hier je astrofoto's toe zodra je deze hebt gemaakt!</p>
+                </div>
+
+                <div style="margin-top: 2rem; background: rgba(26, 31, 58, 0.3); border: 1px solid var(--border-color); border-radius: 8px; padding: 2rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--accent-gold);">Foto Uploaden</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1rem;">Je kunt foto's hier uploaden (deze worden getoond in de galerie).</p>
+                    
+                    <form id="photoForm" style="display: grid; gap: 1rem;">
+                        <div>
+                            <label for="photoTitle" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold);">Foto Titel:</label>
+                            <input type="text" id="photoTitle" name="photoTitle" placeholder="bijv. M42 Orion Nevel" style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px;">
+                        </div>
+
+                        <div>
+                            <label for="photoDate" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold);">Datum:</label>
+                            <input type="date" id="photoDate" name="photoDate" style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px;">
+                        </div>
+
+                        <div>
+                            <label for="photoDescription" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold);">Beschrijving:</label>
+                            <textarea id="photoDescription" name="photoDescription" placeholder="Beschrijving van de foto, oculair gebruikt, condities..." style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px; min-height: 80px;"></textarea>
+                        </div>
+
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">💡 Opmerking: Voor volledige functionaliteit kun je foto's handmatig toevoegen via de projectbestanden.</p>
+                    </form>
+                </div>
+
+                <div id="galleryList" style="margin-top: 2rem;"></div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Waarnemingsfoto's van Anderen</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Links naar spectaculaire astrofoto's gemaakt met vergelijkbare setups:</p>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>M42 Orion Nevel</h3>
+                        <p>Een van de mooiste heldere nevels aan de nachthemel, zichtbaar met bescheiden telescopen.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>M31 Andromeda</h3>
+                        <p>Het dichtbijzijnde sterrenstelsel, gemakkelijk te vinden in de herfst.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>M13 Bolvormige Hoop</h3>
+                        <p>Een prachtige hoop van 100.000+ sterren in de Hercules constellation.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>De Maan</h3>
+                        <p>Altijd een populair waarnemingsobject — kraterkraters en bergketens in detail.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Jupiter</h3>
+                        <p>Met wolkenstrepen en vier Galileïsche manen goed zichtbaar.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Saturnus</h3>
+                        <p>De ringenplaneet — spectaculair om te zien via telescoop.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 — De telescoop en de Mount AZ-GTi GotoWifi</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
