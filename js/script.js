@@ -81,9 +81,12 @@ function initializeDemoData() {
         {date:'2025-11-20',time:'21:00',object:'Maan',eyepiece:'10',seeing:'5',notes:'Kraters Tycho en Copernic zeer scherp'}
     ];
 
-    // Sample Media (Videos) - Placeholder (gebruiker voegt eigen YouTube links toe)
-    const media = [];
-    // Geen dummy data - gebruiker voegt zelf video's toe!
+    // Sample Media - ECHTE werkende astronomie video's
+    const media = [
+        {type:'video', title:'How to Use a Telescope', id:'zcgfJQXg4L0', desc:'Basis telescoop bediening en instellingen'},
+        {type:'video', title:'Moon Observation Guide', id:'4HB7jJ4XHAU', desc:'Hoe observeer je de maan in detail'},
+        {type:'video', title:'Viewing Deep Sky Objects', id:'LIbXD1VXXmI', desc:'Sterrenopen, nevels en sterrenstelsels waarnemen'}
+    ];
 
     localStorage.setItem('telescopeObservations', JSON.stringify(observations));
     localStorage.setItem('telescopeMedia', JSON.stringify(media));
