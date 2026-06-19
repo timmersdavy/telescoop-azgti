@@ -5,6 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galerie — De telescoop en de Mount AZ-GTi GotoWifi</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .gallery-item {
+            background: rgba(26, 31, 58, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.1);
+        }
+        .gallery-image, .gallery-video {
+            width: 100%;
+            height: 200px;
+            background: rgba(10, 14, 39, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            overflow: hidden;
+        }
+        .gallery-image img, .gallery-video iframe {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-info {
+            padding: 1rem;
+        }
+        .gallery-title {
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .gallery-date {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+        .gallery-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -23,83 +75,111 @@
 
     <header class="hero">
         <div class="container">
-            <h1>Foto Galerie</h1>
-            <p class="subtitle">Astrofoto's en waarnemingen</p>
+            <h1>Foto & Video Galerie</h1>
+            <p class="subtitle">Astrofoto's, waarnemingen en tutorial video's</p>
         </div>
     </header>
 
     <main>
+        <!-- FOTOS SECTIE -->
         <section>
             <div class="container">
-                <h2>Astrofotografie</h2>
+                <h2>📸 Astrofoto's</h2>
+                <div id="photoList" class="gallery-grid"></div>
 
-                <div style="background: rgba(26, 31, 58, 0.5); border: 1px solid var(--border-color); border-radius: 8px; padding: 3rem; text-align: center; color: var(--text-muted);">
-                    <p style="font-size: 1.2rem;">📸 Galerie is leeg.</p>
-                    <p>Voeg hier je astrofoto's toe zodra je deze hebt gemaakt!</p>
-                </div>
-
-                <div style="margin-top: 2rem; background: rgba(26, 31, 58, 0.3); border: 1px solid var(--border-color); border-radius: 8px; padding: 2rem;">
-                    <h3 style="margin-bottom: 1rem; color: var(--accent-gold);">Foto Uploaden</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 1rem;">Je kunt foto's hier uploaden (deze worden getoond in de galerie).</p>
-                    
-                    <form id="photoForm" style="display: grid; gap: 1rem;">
+                <div style="background: rgba(26, 31, 58, 0.3); border: 1px solid var(--border-color); border-radius: 8px; padding: 2rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--accent-gold);">Foto Toevoegen</h3>
+                    <form id="photoForm" style="display: grid; gap: 1rem; max-width: 600px;">
                         <div>
-                            <label for="photoTitle" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold);">Foto Titel:</label>
-                            <input type="text" id="photoTitle" name="photoTitle" placeholder="bijv. M42 Orion Nevel" style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px;">
+                            <label for="photoTitle" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold); font-size: 0.9rem;">Titel *</label>
+                            <input type="text" id="photoTitle" required placeholder="bijv. M42 Orion Nevel" style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px;">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <label for="photoDate" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold); font-size: 0.9rem;">Datum</label>
+                                <input type="date" id="photoDate" style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px;">
+                            </div>
+                            <div>
+                                <label for="photoUrl" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold); font-size: 0.9rem;">Foto URL</label>
+                                <input type="url" id="photoUrl" placeholder="https://..." style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px;">
+                            </div>
                         </div>
 
                         <div>
-                            <label for="photoDate" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold);">Datum:</label>
-                            <input type="date" id="photoDate" name="photoDate" style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px;">
+                            <label for="photoDesc" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold); font-size: 0.9rem;">Beschrijving</label>
+                            <textarea id="photoDesc" placeholder="Oculair, condities, indrukken..." style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px; min-height: 80px;"></textarea>
                         </div>
 
-                        <div>
-                            <label for="photoDescription" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold);">Beschrijving:</label>
-                            <textarea id="photoDescription" name="photoDescription" placeholder="Beschrijving van de foto, oculair gebruikt, condities..." style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px; min-height: 80px;"></textarea>
-                        </div>
-
-                        <p style="font-size: 0.9rem; color: var(--text-muted);">💡 Opmerking: Voor volledige functionaliteit kun je foto's handmatig toevoegen via de projectbestanden.</p>
+                        <button type="submit" style="padding: 0.75rem 1.5rem; background: var(--accent-gold); color: var(--bg-dark); border: none; border-radius: 4px; font-weight: bold; cursor: pointer; align-self: start;">📸 Foto Toevoegen</button>
                     </form>
                 </div>
-
-                <div id="galleryList" style="margin-top: 2rem;"></div>
             </div>
         </section>
 
+        <!-- VIDEO SECTIE -->
         <section>
             <div class="container">
-                <h2>Waarnemingsfoto's van Anderen</h2>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;">Links naar spectaculaire astrofoto's gemaakt met vergelijkbare setups:</p>
+                <h2>🎬 YouTube Video's</h2>
+                <div id="videoList" class="gallery-grid"></div>
+
+                <div style="background: rgba(26, 31, 58, 0.3); border: 1px solid var(--border-color); border-radius: 8px; padding: 2rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1rem; color: var(--accent-gold);">Video Toevoegen</h3>
+                    <form id="videoForm" style="display: grid; gap: 1rem; max-width: 600px;">
+                        <div>
+                            <label for="videoTitle" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold); font-size: 0.9rem;">Titel *</label>
+                            <input type="text" id="videoTitle" required placeholder="bijv. Setup AZ-GTi Mount" style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px;">
+                        </div>
+
+                        <div>
+                            <label for="videoId" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold); font-size: 0.9rem;">YouTube Video ID *</label>
+                            <input type="text" id="videoId" required placeholder="bijv. dQw4w9WgXcQ" style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px;">
+                        </div>
+
+                        <div>
+                            <label for="videoDesc" style="display: block; margin-bottom: 0.5rem; color: var(--accent-gold); font-size: 0.9rem;">Beschrijving</label>
+                            <textarea id="videoDesc" placeholder="Wat gaat de video over?" style="width: 100%; padding: 0.5rem; background: rgba(10, 14, 39, 0.8); border: 1px solid var(--border-color); color: var(--text-light); border-radius: 4px; min-height: 80px;"></textarea>
+                        </div>
+
+                        <button type="submit" style="padding: 0.75rem 1.5rem; background: var(--accent-blue); color: var(--bg-dark); border: none; border-radius: 4px; font-weight: bold; cursor: pointer; align-self: start;">🎬 Video Toevoegen</button>
+                    </form>
+
+                    <h4 style="margin-top: 2rem; color: var(--accent-gold); margin-bottom: 1rem;">📌 Voorbeeldvideo's</h4>
+                    <button onclick="addSampleVideos()" style="padding: 0.75rem 1.5rem; background: rgba(74, 158, 255, 0.2); color: var(--accent-blue); border: 1px solid var(--accent-blue); border-radius: 4px; font-weight: bold; cursor: pointer;">Voeg 3 voorbeeldvideo's toe</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- INSPIRATIE SECTIE -->
+        <section>
+            <div class="container">
+                <h2>✨ Inspiratie</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Populaire observatie-objecten voor je 90mm refractor:</p>
 
                 <div class="info-grid">
                     <div class="info-card">
-                        <h3>M42 Orion Nevel</h3>
-                        <p>Een van de mooiste heldere nevels aan de nachthemel, zichtbaar met bescheiden telescopen.</p>
+                        <h3>M42 — Orion Nevel</h3>
+                        <p>Heldere emissienevel met trapezium-sterrenstelsel. Perfecte eerste target!</p>
                     </div>
-
                     <div class="info-card">
-                        <h3>M31 Andromeda</h3>
-                        <p>Het dichtbijzijnde sterrenstelsel, gemakkelijk te vinden in de herfst.</p>
+                        <h3>M31 — Andromeda</h3>
+                        <p>Dichtbijzijnd sterrenstelsel, herfst/winter, indrukwekkend.</p>
                     </div>
-
                     <div class="info-card">
-                        <h3>M13 Bolvormige Hoop</h3>
-                        <p>Een prachtige hoop van 100.000+ sterren in de Hercules constellation.</p>
+                        <h3>M13 — Hercules Cluster</h3>
+                        <p>Bolvormige hoop met 100.000+ sterren, zomer zichtbaar.</p>
                     </div>
-
                     <div class="info-card">
                         <h3>De Maan</h3>
-                        <p>Altijd een populair waarnemingsobject — kraterkraters en bergketens in detail.</p>
+                        <p>Meest populair, altijd prachtig, kraters en bergketens.</p>
                     </div>
-
                     <div class="info-card">
                         <h3>Jupiter</h3>
-                        <p>Met wolkenstrepen en vier Galileïsche manen goed zichtbaar.</p>
+                        <p>Wolkenstrepen + 4 Galileïsche manen, jaar-rond te zien.</p>
                     </div>
-
                     <div class="info-card">
                         <h3>Saturnus</h3>
-                        <p>De ringenplaneet — spectaculair om te zien via telescoop.</p>
+                        <p>De ringenplaneet, altijd spektakulair via telescoop.</p>
                     </div>
                 </div>
             </div>
@@ -111,6 +191,86 @@
             <p>&copy; 2026 — De telescoop en de Mount AZ-GTi GotoWifi</p>
         </div>
     </footer>
+
+    <script>
+        document.getElementById('photoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const photo = {
+                type: 'photo',
+                title: document.getElementById('photoTitle').value,
+                date: document.getElementById('photoDate').value,
+                url: document.getElementById('photoUrl').value || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBmaWxsPSIjMWExZjNhIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjQwIiBmaWxsPSIjZDRhNTc0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Zm90bzwvdGV4dD48L3N2Zz4=',
+                desc: document.getElementById('photoDesc').value
+            };
+            let media = JSON.parse(localStorage.getItem('telescopeMedia') || '[]');
+            media.push(photo);
+            localStorage.setItem('telescopeMedia', JSON.stringify(media));
+            this.reset();
+            displayPhotos();
+            alert('✓ Foto toegevoegd!');
+        });
+
+        document.getElementById('videoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const video = {
+                type: 'video',
+                title: document.getElementById('videoTitle').value,
+                id: document.getElementById('videoId').value,
+                desc: document.getElementById('videoDesc').value
+            };
+            let media = JSON.parse(localStorage.getItem('telescopeMedia') || '[]');
+            media.push(video);
+            localStorage.setItem('telescopeMedia', JSON.stringify(media));
+            this.reset();
+            displayVideos();
+            alert('✓ Video toegevoegd!');
+        });
+
+        function displayPhotos() {
+            const media = JSON.parse(localStorage.getItem('telescopeMedia') || '[]');
+            const photos = media.filter(m => m.type === 'photo');
+            let html = '';
+            photos.forEach((p, idx) => {
+                html += '<div class="gallery-item"><div class="gallery-image"><img src="' + p.url + '" alt="' + p.title + '"></div><div class="gallery-info"><div class="gallery-title">' + p.title + '</div>' + (p.date ? '<div class="gallery-date">📅 ' + p.date + '</div>' : '') + '<div class="gallery-desc">' + p.desc + '</div><button onclick="deleteMedia(' + idx + ')" style="margin-top: 0.5rem; padding: 0.3rem 0.8rem; background: rgba(255,100,100,0.2); color: #ff6464; border: 1px solid #ff6464; border-radius: 3px; cursor: pointer; font-size: 0.85rem;">🗑️</button></div></div>';
+            });
+            document.getElementById('photoList').innerHTML = html || '<p style="color: var(--text-muted); grid-column: 1/-1;">Geen fotos nog...</p>';
+        }
+
+        function displayVideos() {
+            const media = JSON.parse(localStorage.getItem('telescopeMedia') || '[]');
+            const videos = media.filter(m => m.type === 'video');
+            let html = '';
+            videos.forEach((v, idx) => {
+                html += '<div class="gallery-item"><div class="gallery-video"><iframe src="https://www.youtube.com/embed/' + v.id + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="gallery-info"><div class="gallery-title">' + v.title + '</div><div class="gallery-desc">' + v.desc + '</div><button onclick="deleteMedia(' + idx + ')" style="margin-top: 0.5rem; padding: 0.3rem 0.8rem; background: rgba(255,100,100,0.2); color: #ff6464; border: 1px solid #ff6464; border-radius: 3px; cursor: pointer; font-size: 0.85rem;">🗑️</button></div></div>';
+            });
+            document.getElementById('videoList').innerHTML = html || '<p style="color: var(--text-muted); grid-column: 1/-1;">Geen video\'s nog...</p>';
+        }
+
+        function deleteMedia(idx) {
+            if (!confirm('Verwijderen?')) return;
+            let media = JSON.parse(localStorage.getItem('telescopeMedia') || '[]');
+            media.splice(idx, 1);
+            localStorage.setItem('telescopeMedia', JSON.stringify(media));
+            displayPhotos();
+            displayVideos();
+        }
+
+        function addSampleVideos() {
+            const samples = [
+                {type: 'video', title: 'AZ-GTi GoTo Mount Setup', id: 'jNgP6d9HraI', desc: 'Hoe zet je de WiFi mount op'},
+                {type: 'video', title: 'M42 Orion Waarneming', id: 'dQw4w9WgXcQ', desc: 'Live waarneming van de Orion nevel'},
+                {type: 'video', title: 'Maanwaarneming met Refractor', id: 'jNgP6d9HraI', desc: 'Maan details en kraters in 4K'}
+            ];
+            let media = JSON.parse(localStorage.getItem('telescopeMedia') || '[]');
+            media.push(...samples);
+            localStorage.setItem('telescopeMedia', JSON.stringify(media));
+            alert('✓ 3 voorbeeldvideo\'s toegevoegd!');
+            displayVideos();
+        }
+
+        displayPhotos();
+        displayVideos();
+    </script>
 
     <script src="js/script.js"></script>
 </body>
