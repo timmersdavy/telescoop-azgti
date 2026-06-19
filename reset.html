@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head><title>Reset</title></head>
+<body style="background:#1a1f3a; color:#e8e8e8; padding: 20px; font-family: monospace;">
+<h2>🔄 Resetting localStorage...</h2>
+<pre id="log"></pre>
+<script>
+const log = msg => {
+    console.log(msg);
+    document.getElementById('log').textContent += msg + '\n';
+};
+
+log('✓ Wissen telescopeObservations...');
+localStorage.removeItem('telescopeObservations');
+
+log('✓ Wissen telescopeMedia...');
+localStorage.removeItem('telescopeMedia');
+
+log('✓ Wissen telescopeInitialized flag...');
+localStorage.removeItem('telescopeInitialized');
+
+log('\n✅ Klaar! Ga naar galerie.html...');
+
+setTimeout(() => {
+    window.location.href = 'galerie.html';
+}, 2000);
+</script>
+</body>
+</html>

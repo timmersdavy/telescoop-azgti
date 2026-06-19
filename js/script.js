@@ -81,12 +81,9 @@ function initializeDemoData() {
         {date:'2025-11-20',time:'21:00',object:'Maan',eyepiece:'10',seeing:'5',notes:'Kraters Tycho en Copernic zeer scherp'}
     ];
 
-    // Sample Media (Videos) - Echte astronomie content
-    const media = [
-        {type:'video',title:'Refractor Telescoop Gids',id:'vMqDpgwRW80',desc:'Hoe kies je en bedient je een refractor telescoop'},
-        {type:'video',title:'Maan Crater Mapping',id:'QbNRwW4H1cI',desc:'Gedetailleerde kraters en maanlandschap'},
-        {type:'video',title:'Deep Sky Objects Observeren',id:'tYzMGcUty6s',desc:'Tips voor het waarnemen van nevels en sterrenhopen'}
-    ];
+    // Sample Media (Videos) - Placeholder (gebruiker voegt eigen YouTube links toe)
+    const media = [];
+    // Geen dummy data - gebruiker voegt zelf video's toe!
 
     localStorage.setItem('telescopeObservations', JSON.stringify(observations));
     localStorage.setItem('telescopeMedia', JSON.stringify(media));
