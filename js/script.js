@@ -1,6 +1,9 @@
 // Basis JavaScript voor interactiviteit
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Auto-initialize demo data on first visit
+    initializeDemoData();
+
     // Navigatie active state
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -62,4 +65,32 @@ function exportObservations() {
     document.body.appendChild(downloadAnchorNode);
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
+}
+
+// AUTO-INITIALIZE DEMO DATA
+function initializeDemoData() {
+    const initialized = localStorage.getItem('telescopeInitialized');
+    if (initialized) return; // Alleen eerste keer
+
+    // Sample Observations
+    const observations = [
+        {date:'2025-12-15',time:'21:30',object:'M42',eyepiece:'25',seeing:'4',notes:'Orion Nevel, prachtig detail van Trapezium zichtbaar'},
+        {date:'2025-12-10',time:'20:00',object:'NGC 7009',eyepiece:'10',seeing:'3',notes:'Saturnus Nevel, groene kleur duidelijk zichtbaar'},
+        {date:'2025-12-05',time:'22:15',object:'Jupiter',eyepiece:'15',seeing:'5',notes:'Uitstekend, alle 4 manen Io, Europa, Ganymedes, Callisto'},
+        {date:'2025-11-28',time:'19:45',object:'M13',eyepiece:'25',seeing:'4',notes:'Hercules bolvormige hoop, individuele sterren'},
+        {date:'2025-11-20',time:'21:00',object:'Maan',eyepiece:'10',seeing:'5',notes:'Kraters Tycho en Copernic zeer scherp'}
+    ];
+
+    // Sample Media (Videos)
+    const media = [
+        {type:'video',title:'AZ-GTi GoTo Mount Setup',id:'jNgP6d9HraI',desc:'Hoe zet je de WiFi mount op - stap voor stap'},
+        {type:'video',title:'M42 Orion Waarneming',id:'dQw4w9WgXcQ',desc:'Live waarneming van de Orion nevel met 90mm refractor'},
+        {type:'video',title:'Maanwaarneming met Refractor',id:'jNgP6d9HraI',desc:'Maan details en kraters in 4K kwaliteit'}
+    ];
+
+    localStorage.setItem('telescopeObservations', JSON.stringify(observations));
+    localStorage.setItem('telescopeMedia', JSON.stringify(media));
+    localStorage.setItem('telescopeInitialized', 'true');
+
+    console.log('✓ Demo data geladen: 5 waarnemingen + 3 video\'s');
 }
